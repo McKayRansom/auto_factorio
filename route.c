@@ -1,6 +1,6 @@
 /*
  * route.cpp
- * A basic maze router for a factorio belt layout
+ * A basic maze router for a Factorio belt layout
  * Inputs: doRouting takes netlist and routes it
  *
  * TODO: add sorted list, add errors, add random orders instead of just
@@ -10,7 +10,7 @@
  *
  * Algorithm: Maze router with additional cost for
  * points near other nets' endpoints. Somewhat slow but 
- * garunteed to find a solution if one exists (for a given belt)
+ * guarantee to find a solution if one exists (for a given belt)
  *
  * Because we cannot move placed belts, some solutions for routing
  * every belt will not be found. For this reason the router will try 
@@ -591,10 +591,10 @@ int route(struct tile_map* map, struct netlist this_netlist, int num_attempts)
         for (int count = 0; count < this_netlist.size; count++) {
             debug_print_routing("routing net: %d\n", i);
             int cost = route_net(map, i, this_netlist.nets[i]);
-#ifdef DEBUG_ROUTING
-            print_map(map);
-            print_costs(map);
-#endif
+            if (DEBUG_ROUTING_TRUE) {
+                print_map(map);
+                print_costs(map);
+            }
             if (cost < 0) { //routing failed
                 debug_print_routing("routing net %d FAILED!\n", i);
                 routed = false;
