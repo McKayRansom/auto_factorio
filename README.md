@@ -1,4 +1,4 @@
-#auto\_factorio
+# auto\_factorio
 Tools for automating Factorio (a game about automation)
 
 ## route
